@@ -1,0 +1,14 @@
+#Dashboard{
+  position: absolute;
+  box-sizing: border-box;
+  background: #E5E5E5;
+  width: 1280px;
+  height: 800px;
+  background-color: rgba(158,195,221,1);
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  --web-view-name: Dashboard – 1;
+  --web-view-id: Dashboard___1;
+  --web-enable-deep-linking: true;
+}
