@@ -1,5 +1,5 @@
 <html>
-<?php include_once("conn.php"); ?>
+<?php include_once("../conn.php"); ?>
 
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>

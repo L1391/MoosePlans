@@ -1,5 +1,5 @@
 <?php
-include_once("conn.php");
+include_once("../conn.php");
 
 $wknd_id = $_POST['wknd_id'];
 

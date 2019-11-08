@@ -1,7 +1,7 @@
 <?php
 include_once("conn.php");
 
-$name = $_POST['name'];
+$name = addslashes($_POST['name']);
 $location = $_POST['location'];
 $date = $_POST['date'];
 $start_time = $_POST['start_time'];

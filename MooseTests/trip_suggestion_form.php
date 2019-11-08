@@ -1,47 +1,91 @@
-<!DOCTYPE=html>
 <html>
 <head>
+<?php include_once("conn.php"); ?>
   <title> Weekend Preferences </title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+  $( function() {
+    var trip_names = [
+      <?php $trips = $db->query("SELECT name FROM trip_def")->fetchAll();
+      foreach($trips as $index=>$t) {
+        echo "'" . addslashes($t['name']) . "'";
+        if ($index < sizeof($trips) - 1) {
+          echo ",";
+        }
+      }
+      ?>
+    ];
+    $("#name").autocomplete({
+      source: trip_names
+    });
+  });
+
+  function updateFields() {
+    var trip_names = [
+      <?php $trips = $db->query("SELECT name FROM trip_def")->fetchAll();
+      foreach($trips as $index=>$t) {
+        echo "'" . addslashes($t['name']) . "'";
+        if ($index < sizeof($trips) - 1) {
+          echo ",";
+        }
+      }
+      ?>
+    ];
+    var name = $('#name').val();
+    if (trip_names.includes(name)) {
+      $('.optional').hide();
+    } else {
+      $('.optional').show();
+    }
+  }
+  </script>
 </head>
 <body>
 
-<p>Name:</p>
-  <input type='text' id="name">
+Name:
+  <input type='text' id="name" onchange='updateFields()'>
 <br>
-<p>Location:</p>
+<div class='optional'>
+Location:
   <input type='text' id="location"  >
-<br>
-<p>Date:</p>
+</div>
+Date:
   <input type="text" id="date" placeholder="MM/DD/YYYY">
 <br>
-<p>Start time:</p>
+Start time:
   <input type=”text” id="starttime"   maxlength=5 placeholder="hh:mm">
 <br>
-<p>End time:</p>
+End time:
   <input type=”text” id="endtime"   maxlength=5 placeholder="hh:mm">
 <br>
-<p>Student capacity:</p>
+<div class='optional'>
+Student capacity:
 <input type='number' id="capacity"  min=0>
 <br>
-<p>Estimated Cost:</p>
+Estimated Cost:
   <input type='number' id="cost" min=0>
 <br>
-<p>Bring money?:</p>
+Bring money?:
 <input type='checkbox' id='bringmoney'>
 <br>
-<p>On campus?:</p>
+On campus?:
 <input type='checkbox' id='oncampus'>
 <br>
-<p>Bus needed?:</p>
+Bus needed?:
 <input type='checkbox' id='busneeded'>
 <br>
-<p>Number of vans:</p>
+Number of vans:
   <input type='number' id="vans"   min=0 max=5>
 <br>
-<p>Description:</p>
+Description:
   <input type='text' id="description"  >
+</div>
 <br>
+
 
 <button onclick="sendSuggest()"> Submit Suggestion </button>
 </body>

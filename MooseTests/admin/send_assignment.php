@@ -1,5 +1,5 @@
 <?php
-include_once("conn.php");
+include_once("../conn.php");
 
 $trip_ids = $_POST['trip_ids'];
 $dates = $_POST['dates'];
